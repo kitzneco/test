@@ -1,0 +1,60 @@
+---
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+	<div class="container">
+		<h1>Hello INDEX</h1>
+		<div class="img-box">
+			<img src="/beach.webp" alt="">
+		</div>
+	</div>
+</Layout>
+
+<script>
+	import gsap from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
+	gsap.registerPlugin(ScrollTrigger);
+	window.addEventListener("load", () => {
+		console.log("Hello world");
+
+		gsap.fromTo(".img-box img", {
+			y: "-100px"
+		},{
+			y: "100px",
+			duration: 2,
+			scrollTrigger: {
+				trigger: ".img-box",
+				start: "top bottom",
+				end: "bottom top",
+				scrub: true,
+				markers: true
+			}
+
+		})
+	})
+</script>
+
+<style>
+	.container {
+		width: 100%;
+		padding-block: 100vh;
+
+	}
+	.img-box{
+		width: 100%;
+		height: 400px;
+		overflow: hidden;
+		position: relative;
+		img{
+			position: absolute;
+			inset: 0;
+			margin: auto;
+			width: 100%;
+		}
+	}
+</style>
